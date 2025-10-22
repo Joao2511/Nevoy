@@ -42,7 +42,6 @@ function AnimatedImage({
   registerRef: (el: HTMLDivElement | null) => void;
 }) {
   const controls = useAnimation();
-
   const SLOW_SPRING: Transition = { type: 'spring', stiffness: 90, damping: 32, mass: 1.1 };
 
   useEffect(() => {
@@ -118,6 +117,59 @@ export default function Projetos() {
       window.removeEventListener('resize', computeActive);
     };
   }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // garante que não ficou scroll X
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+
+    const snapToActive = () => {
+      const idx = Math.max(activeCard, 0);
+      const el = cardRefs.current[idx] ?? cardRefs.current[0];
+      if (!el) return;
+
+      const offset = window.innerHeight * 0.2;
+      const y = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: y, behavior: 'auto' });
+    };
+
+    let cancelled = false;
+    let tries = 0;
+    const tick = () => {
+      if (cancelled) return;
+      snapToActive();
+      if (++tries < 8) setTimeout(tick, 60);
+    };
+
+    const raf = requestAnimationFrame(() => setTimeout(tick, 0));
+    const onWindowLoad = () => snapToActive();
+    window.addEventListener('load', onWindowLoad);
+
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      window.removeEventListener('load', onWindowLoad);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.location.hash !== '#projetos') return;
+
+    const idx = Math.max(activeCard, 0);
+    const el = cardRefs.current[idx] ?? cardRefs.current[0];
+    if (!el) return;
+
+    const offset = window.innerHeight * 0.2;
+    const y = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: y, behavior: 'auto' });
+  }, [activeCard]);
 
   const current = Math.max(activeCard, 0);
 
