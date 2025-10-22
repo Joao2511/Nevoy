@@ -1,9 +1,12 @@
+import Image from 'next/image';
+import logo from '../assets/images/logo.png';
+
 export default function Footer() {
   return (
     <footer className="bg-black text-white">
       <div className="flex flex-wrap justify-between gap-10 px-12 py-16 md:px-24">
         <div className="flex max-w-[260px] flex-col gap-3">
-          <span className="text-2xl font-bold">ɴ</span>
+          <Image src={logo} alt="" className="w-12" />
           <p className="leading-relaxed font-medium">
             Soluções inteligentes para um futuro confiável.
           </p>
@@ -25,32 +28,6 @@ export default function Footer() {
             <li>
               <a href="#servicos" className="transition hover:text-white">
                 Serviços
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="mb-3 font-semibold text-gray-300">Recursos</h4>
-          <ul className="space-y-2 text-gray-400">
-            <li>
-              <a href="#faq" className="transition hover:text-white">
-                FAQ
-              </a>
-            </li>
-            <li>
-              <a href="#termos" className="transition hover:text-white">
-                Termos de Serviço
-              </a>
-            </li>
-            <li>
-              <a href="#politica" className="transition hover:text-white">
-                Política de Privacidade
-              </a>
-            </li>
-            <li>
-              <a href="#cookies" className="transition hover:text-white">
-                Cookies
               </a>
             </li>
           </ul>

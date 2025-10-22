@@ -46,7 +46,10 @@ export default function Servicos() {
       className="mt-82 flex flex-wrap justify-center gap-10 bg-black px-12 py-24 text-white"
     >
       {services.map((service) => (
-        <div className="group relative min-h-[520px] w-[340px] rounded-3xl transition-transform duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]">
+        <div
+          key={service.title}
+          className="group relative min-h-[520px] w-[340px] rounded-3xl transition-transform duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]"
+        >
           <div className="rounded-3xl bg-transparent p-[2px] transition-all duration-300 group-hover:bg-[#a855f7]/30">
             <div className="relative z-10 h-full rounded-3xl border-none bg-gradient-to-tr from-[#0c0c0c] via-[#050505] to-[#141414] p-8 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]">
               <div className="flex-1">

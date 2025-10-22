@@ -1,12 +1,13 @@
 'use client';
+import logo from '../assets/images/logo.png';
+import Image from 'next/image';
 
 export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 z-50 w-full border-b border-white/5 bg-black/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4 text-white">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl font-bold">ɴ</span>
-          <span className="text-lg font-semibold">Nevoy</span>
+        <div className="flex items-center">
+          <Image src={logo} alt="" className="w-12" />
         </div>
 
         <ul className="hidden items-center gap-8 text-sm text-gray-300 md:flex">
