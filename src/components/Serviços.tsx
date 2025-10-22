@@ -74,9 +74,11 @@ export default function Servicos() {
                 href={service.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 flex h-12 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-t from-[#0a0a0a] to-[#1b1b1b] text-white transition-transform duration-300 hover:scale-[1.02] hover:text-[#a855f7] focus-visible:ring-2 focus-visible:ring-[#a855f7]/60 focus-visible:outline-none"
+                className="mt-8 flex h-12 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-t from-[#0a0a0a] to-[#1b1b1b] text-white transition-all duration-300"
               >
-                <p className="transition-colors duration-200">Solicitar orçamento</p>
+                <p className="transition-colors duration-300 group-hover:text-[#a855f7]">
+                  Solicitar orçamento
+                </p>
               </a>
             </div>
           </div>
