@@ -41,7 +41,10 @@ const services = [
 
 export default function Servicos() {
   return (
-    <section className="mt-82 flex flex-wrap justify-center gap-10 bg-black px-12 py-24 text-white">
+    <section
+      id="servicos"
+      className="mt-82 flex flex-wrap justify-center gap-10 bg-black px-12 py-24 text-white"
+    >
       {services.map((service) => (
         <div className="group relative min-h-[520px] w-[340px] rounded-3xl transition-transform duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]">
           <div className="rounded-3xl bg-transparent p-[2px] transition-all duration-300 group-hover:bg-[#a855f7]/30">
