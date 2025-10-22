@@ -2,32 +2,38 @@
 
 import { motion, useAnimation, type Transition } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 
 import siteImg from '@/assets/images/site.png';
 import appImg from '@/assets/images/app.png';
 import automacaoImg from '@/assets/images/automacao.png';
 import trafegoImg from '@/assets/images/trafego.png';
 
-const sections = [
+type Section = {
+  title: string;
+  text: string;
+  image: StaticImageData;
+};
+
+const sections: Section[] = [
   {
     title: 'Sites',
-    text: 'A Nevoy cria sites modernos e aplicativos sob medida que unem design sofisticado, alta performance e escalabilidade. Nosso processo vai do entendimento da necessidade até a entrega final, garantindo soluções digitais que conectam empresas e clientes de forma intuitiva, segura e eficiente.',
+    text: 'A Nevoy cria sites modernos e aplicativos sob medida que unem design sofisticado, alta performance e escalabilidade...',
     image: siteImg,
   },
   {
     title: 'Apps',
-    text: 'Aplicativos nativos e híbridos que oferecem experiências fluidas e intuitivas, com design e performance premium.',
+    text: 'Aplicativos nativos e híbridos que oferecem experiências fluidas e intuitivas...',
     image: appImg,
   },
   {
     title: 'Automação e IA',
-    text: 'Integramos inteligência artificial e automações para otimizar fluxos e reduzir custos operacionais.',
+    text: 'Integramos inteligência artificial e automações para otimizar fluxos...',
     image: automacaoImg,
   },
   {
     title: 'Tráfego pago',
-    text: 'Campanhas de marketing de performance orientadas por dados para escalar resultados.',
+    text: 'Campanhas de marketing de performance orientadas por dados...',
     image: trafegoImg,
   },
 ];
@@ -37,19 +43,25 @@ function AnimatedImage({
   isOpen,
   registerRef,
 }: {
-  section: { title: string; image: any };
+  section: Section;
   isOpen: boolean;
   registerRef: (el: HTMLDivElement | null) => void;
 }) {
   const controls = useAnimation();
-  const SLOW_SPRING: Transition = { type: 'spring', stiffness: 90, damping: 32, mass: 1.1 };
+
+  const SLOW_SPRING = {
+    type: 'spring',
+    stiffness: 90,
+    damping: 32,
+    mass: 1.1,
+  } satisfies Transition;
 
   useEffect(() => {
     controls.start({
       x: isOpen ? 0 : 150,
       transition: SLOW_SPRING,
     });
-  }, [isOpen, controls]);
+  }, [isOpen, controls, SLOW_SPRING]);
 
   return (
     <motion.div
@@ -72,23 +84,19 @@ function AnimatedImage({
 
 export default function Projetos() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeCard, setActiveCard] = useState(-1);
-
   const lastYRef = useRef(0);
 
+  // Detecta qual card está ativo com base no scroll
   useEffect(() => {
     const computeActive = () => {
       const y = window.scrollY || 0;
       const goingDown = y >= lastYRef.current;
       lastYRef.current = y;
 
-      // (descendo): abre mais cedo
       const ENTER_VH = 0.83;
       const ENTER_PX = 110;
-
-      // (subindo): fecha MAIS cedo ainda
       const EXIT_VH = 0.55;
       const EXIT_PX = 40;
 
@@ -99,12 +107,9 @@ export default function Projetos() {
       for (let i = 0; i < cardRefs.current.length; i++) {
         const el = cardRefs.current[i];
         if (!el) continue;
-        const r = el.getBoundingClientRect();
-        const top = r.top;
-
+        const top = el.getBoundingClientRect().top;
         if (top < line) last = i;
       }
-
       setActiveCard(last);
     };
 
@@ -118,46 +123,7 @@ export default function Projetos() {
     };
   }, []);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-
-    // garante que não ficou scroll X
-    document.documentElement.scrollLeft = 0;
-    document.body.scrollLeft = 0;
-
-    const snapToActive = () => {
-      const idx = Math.max(activeCard, 0);
-      const el = cardRefs.current[idx] ?? cardRefs.current[0];
-      if (!el) return;
-
-      const offset = window.innerHeight * 0.2;
-      const y = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: y, behavior: 'auto' });
-    };
-
-    let cancelled = false;
-    let tries = 0;
-    const tick = () => {
-      if (cancelled) return;
-      snapToActive();
-      if (++tries < 8) setTimeout(tick, 60);
-    };
-
-    const raf = requestAnimationFrame(() => setTimeout(tick, 0));
-    const onWindowLoad = () => snapToActive();
-    window.addEventListener('load', onWindowLoad);
-
-    return () => {
-      cancelled = true;
-      cancelAnimationFrame(raf);
-      window.removeEventListener('load', onWindowLoad);
-    };
-  }, []);
-
+  // Só força posição no reload com hash #projetos
   useEffect(() => {
     if (typeof window === 'undefined') return;
     if (window.location.hash !== '#projetos') return;
@@ -184,12 +150,9 @@ export default function Projetos() {
                 onClick={() => {
                   const el = cardRefs.current[i];
                   if (el) {
-                    const offset = window.innerHeight * 0.2; // 👈 para parar ~20% antes do topo
+                    const offset = window.innerHeight * 0.2;
                     const elTop = el.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({
-                      top: elTop,
-                      behavior: 'smooth',
-                    });
+                    window.scrollTo({ top: elTop, behavior: 'smooth' });
                   }
                 }}
                 className={`cursor-pointer pb-6 transition-all duration-300 ${
@@ -213,16 +176,15 @@ export default function Projetos() {
                     className="mt-3 text-[0.95rem] leading-relaxed text-gray-400"
                   >
                     {s.text}
-
                     <a
                       href={
                         i === 0
-                          ? 'https://api.whatsapp.com/send?phone=5561995997277&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20criar%20um%20site%20com%20a%20Nevoy!'
+                          ? 'https://api.whatsapp.com/send?phone=5561995997277&text=Olá%2C%20tenho%20interesse%20em%20criar%20um%20site%20com%20a%20Nevoy!'
                           : i === 1
-                            ? 'https://api.whatsapp.com/send?phone=5561995997277&text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20o%20desenvolvimento%20de%20aplicativos%20da%20Nevoy!'
+                            ? 'https://api.whatsapp.com/send?phone=5561995997277&text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20desenvolvimento%20de%20aplicativos%20da%20Nevoy!'
                             : i === 2
-                              ? 'https://api.whatsapp.com/send?phone=5561995997277&text=Ol%C3%A1%2C%20gostaria%20de%20entender%20melhor%20como%20funciona%20a%20automação%20e%20IA%20da%20Nevoy!'
-                              : 'https://api.whatsapp.com/send?phone=5561995997277&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20servi%C3%A7os%20de%20tr%C3%A1fego%20pago%20da%20Nevoy!'
+                              ? 'https://api.whatsapp.com/send?phone=5561995997277&text=Olá%2C%20gostaria%20de%20entender%20melhor%20como%20funciona%20a%20automação%20e%20IA%20da%20Nevoy!'
+                              : 'https://api.whatsapp.com/send?phone=5561995997277&text=Olá%2C%20tenho%20interesse%20em%20serviços%20de%20tráfego%20pago%20da%20Nevoy!'
                       }
                       target="_blank"
                       rel="noopener noreferrer"

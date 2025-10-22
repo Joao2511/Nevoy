@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import SplineViewer from '@/components/SplineViewer';
-import Reveal from '@/components/Reveal';
 
 export default function Hero() {
   return (
