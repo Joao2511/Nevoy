@@ -41,55 +41,60 @@ const services = [
 
 export default function Servicos() {
   return (
-    <section
-      id="servicos"
-      className="mt-82 flex flex-wrap justify-center gap-10 bg-black px-12 py-24 text-white"
-    >
-      {services.map((service) => (
-        <div
-          key={service.title}
-          className="group relative min-h-[520px] w-[340px] rounded-3xl transition-transform duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]"
-        >
-          <div className="rounded-3xl bg-transparent p-[2px] transition-all duration-300 group-hover:bg-[#a855f7]/30">
-            <div className="relative z-10 h-full rounded-3xl border-none bg-gradient-to-tr from-[#0c0c0c] via-[#050505] to-[#141414] p-8 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]">
-              <div className="flex-1">
-                <div className="mb-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/40 transition-all duration-300 ease-out group-hover:border-[#a855f7] group-hover:shadow-[0_0_0_4px_rgba(168,85,247,0.15)]">
-                  <div className="h-3 w-3 rounded-full bg-white/70 transition-all duration-300 ease-out group-hover:bg-[#a855f7]" />
+    <>
+      <h1 className="mt-82 text-center text-4xl leading-[1.05] font-semibold md:text-5xl">
+        Nossos serviços
+      </h1>
+      <section
+        id="servicos"
+        className="mb-24 flex flex-wrap justify-center gap-10 bg-black px-12 py-24 text-white"
+      >
+        {services.map((service) => (
+          <div
+            key={service.title}
+            className="group relative min-h-[520px] w-[340px] rounded-3xl transition-transform duration-500 ease-out hover:-translate-y-1 hover:scale-[1.03]"
+          >
+            <div className="rounded-3xl bg-transparent p-[2px] transition-all duration-300 group-hover:bg-[#a855f7]/30">
+              <div className="relative z-10 h-full rounded-3xl border-none bg-gradient-to-tr from-[#0c0c0c] via-[#050505] to-[#141414] p-8 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]">
+                <div className="flex-1">
+                  <div className="mb-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/40 transition-all duration-300 ease-out group-hover:border-[#a855f7] group-hover:shadow-[0_0_0_4px_rgba(168,85,247,0.15)]">
+                    <div className="h-3 w-3 rounded-full bg-white/70 transition-all duration-300 ease-out group-hover:bg-[#a855f7]" />
+                  </div>
+
+                  <h3 className="mb-2 text-2xl font-medium">{service.title}</h3>
+                  <p className="mb-6 font-extralight text-white/70">{service.text}</p>
+
+                  <hr className="mb-6 border-white/10" />
+
+                  <h4 className="mb-4 font-medium text-white/90">O que você recebe</h4>
+                  <ul className="space-y-3">
+                    {service.itens.map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-gray-300">
+                        <FontAwesomeIcon
+                          icon={faCircleCheck}
+                          className="text-white transition-colors duration-300 group-hover:text-[#a855f7]"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <h3 className="mb-2 text-2xl font-medium">{service.title}</h3>
-                <p className="mb-6 font-extralight text-white/70">{service.text}</p>
-
-                <hr className="mb-6 border-white/10" />
-
-                <h4 className="mb-4 font-medium text-white/90">O que você recebe</h4>
-                <ul className="space-y-3">
-                  {service.itens.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-gray-300">
-                      <FontAwesomeIcon
-                        icon={faCircleCheck}
-                        className="text-white transition-colors duration-300 group-hover:text-[#a855f7]"
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <a
+                  href={service.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 flex h-12 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-t from-[#0a0a0a] to-[#1b1b1b] text-white transition-all duration-300"
+                >
+                  <p className="transition-colors duration-300 group-hover:text-[#a855f7]">
+                    Solicitar orçamento
+                  </p>
+                </a>
               </div>
-
-              <a
-                href={service.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 flex h-12 cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-t from-[#0a0a0a] to-[#1b1b1b] text-white transition-all duration-300"
-              >
-                <p className="transition-colors duration-300 group-hover:text-[#a855f7]">
-                  Solicitar orçamento
-                </p>
-              </a>
             </div>
           </div>
-        </div>
-      ))}
-    </section>
+        ))}
+      </section>
+    </>
   );
 }
