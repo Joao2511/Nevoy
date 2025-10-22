@@ -49,19 +49,14 @@ function AnimatedImage({
 }) {
   const controls = useAnimation();
 
-  const SLOW_SPRING = {
-    type: 'spring',
-    stiffness: 90,
-    damping: 32,
-    mass: 1.1,
-  } satisfies Transition;
+  const SLOW_SPRING: Transition = { type: 'spring', stiffness: 90, damping: 32, mass: 1.1 };
 
   useEffect(() => {
     controls.start({
       x: isOpen ? 0 : 150,
       transition: SLOW_SPRING,
     });
-  }, [isOpen, controls, SLOW_SPRING]);
+  }, [isOpen, controls]);
 
   return (
     <motion.div
@@ -88,7 +83,20 @@ export default function Projetos() {
   const [activeCard, setActiveCard] = useState(-1);
   const lastYRef = useRef(0);
 
-  // Detecta qual card está ativo com base no scroll
+  // 🔹 1. Força o scroll pro topo quando a página recarregar
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // desabilita comportamento de restauração do navegador
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    // rola suavemente pro topo no load
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
+
+  // 🔹 2. Detecta qual card está ativo
   useEffect(() => {
     const computeActive = () => {
       const y = window.scrollY || 0;
@@ -123,25 +131,12 @@ export default function Projetos() {
     };
   }, []);
 
-  // Só força posição no reload com hash #projetos
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (window.location.hash !== '#projetos') return;
-
-    const idx = Math.max(activeCard, 0);
-    const el = cardRefs.current[idx] ?? cardRefs.current[0];
-    if (!el) return;
-
-    const offset = window.innerHeight * 0.2;
-    const y = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top: y, behavior: 'auto' });
-  }, [activeCard]);
-
   const current = Math.max(activeCard, 0);
 
   return (
     <section id="projetos" ref={containerRef} className="relative bg-black text-white">
       <div className="flex w-full gap-24 py-16">
+        {/* Menu lateral */}
         <div className="sticky top-20 h-fit w-1/3 self-start pt-24 pl-36">
           <ul className="space-y-8 pt-6">
             {sections.map((s, i) => (
@@ -199,6 +194,7 @@ export default function Projetos() {
           </ul>
         </div>
 
+        {/* Imagens animadas */}
         <div className="relative left-[2vw] flex w-2/3 flex-col justify-center gap-64">
           {sections.map((s, i) => (
             <AnimatedImage
