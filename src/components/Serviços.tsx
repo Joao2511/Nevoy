@@ -71,7 +71,7 @@ export default function Servicos() {
 
       <motion.section
         id="servicos"
-        className="mb-24 grid grid-cols-1 justify-items-center gap-10 bg-black px-12 py-24 text-white sm:grid-cols-2 lg:grid-cols-3"
+        className="mx-auto mb-12 grid max-w-6xl [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))] place-items-center gap-x-24 gap-y-6 px-4 py-10 text-white"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
