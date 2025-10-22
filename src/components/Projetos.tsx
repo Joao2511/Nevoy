@@ -18,22 +18,22 @@ type Section = {
 const sections: Section[] = [
   {
     title: 'Sites',
-    text: 'A Nevoy cria sites modernos e aplicativos sob medida que unem design sofisticado, alta performance e escalabilidade...',
+    text: 'A Nevoy cria sites modernos e aplicativos sob medida que unem design sofisticado, alta performance e escalabilidade. Nosso processo vai do entendimento da necessidade até a entrega final, garantindo soluções digitais que conectam empresas e clientes de forma intuitiva, segura e eficiente.',
     image: siteImg,
   },
   {
     title: 'Apps',
-    text: 'Aplicativos nativos e híbridos que oferecem experiências fluidas e intuitivas...',
+    text: 'Aplicativos nativos e híbridos que oferecem experiências fluidas e intuitivas, com design e performance premium.',
     image: appImg,
   },
   {
     title: 'Automação e IA',
-    text: 'Integramos inteligência artificial e automações para otimizar fluxos...',
+    text: 'Integramos inteligência artificial e automações para otimizar fluxos e reduzir custos operacionais.',
     image: automacaoImg,
   },
   {
     title: 'Tráfego pago',
-    text: 'Campanhas de marketing de performance orientadas por dados...',
+    text: 'Campanhas de marketing de performance orientadas por dados para escalar resultados.',
     image: trafegoImg,
   },
 ];
