@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import Hero from '@/components/Hero';
 import Escolha from '@/components/Escolha';
 import Projetos from '@/components/Projetos';

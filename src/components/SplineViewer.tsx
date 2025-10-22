@@ -1,6 +1,6 @@
-"use client";
-import { useEffect } from "react";
-import Spline from "@splinetool/react-spline";
+'use client';
+import { useEffect } from 'react';
+import Spline from '@splinetool/react-spline';
 
 export default function SplineViewer() {
   useEffect(() => {
@@ -8,11 +8,8 @@ export default function SplineViewer() {
   }, []);
 
   return (
-    <div className="w-full h-[700px] overflow-hidden">
-      <Spline
-        scene="https://prod.spline.design/accSi0qrqymLDjQI/scene.splinecode"
-      />
+    <div className="h-[700px] w-full overflow-hidden">
+      <Spline scene="https://prod.spline.design/accSi0qrqymLDjQI/scene.splinecode" />
     </div>
   );
 }
-
