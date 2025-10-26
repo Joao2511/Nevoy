@@ -8,7 +8,7 @@ export default function SplineViewer() {
   }, []);
 
   return (
-    <div className="h-[700px] w-full overflow-hidden">
+    <div className="pointer-events-none h-full w-full overflow-hidden">
       <Spline scene="https://prod.spline.design/accSi0qrqymLDjQI/scene.splinecode" />
     </div>
   );
