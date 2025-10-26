@@ -7,13 +7,13 @@ export default function Hero() {
   return (
     <main id="hero" className="overflow-x-hidden text-white">
       <motion.section
-        className="flex min-h-[80svh] flex-col items-center justify-center pb-14 text-center"
+        className="flex min-h-[80svh] flex-col items-center justify-center px-4 text-center sm:px-6 md:px-10 lg:px-20"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.4 }}
       >
         <motion.div
-          className="pointer-events-none w-full pt-10 pb-12"
+          className="pointer-events-none w-full max-w-[1200px] pt-8 pb-10 sm:pt-10 sm:pb-14"
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           style={{ willChange: 'transform, filter, opacity' }}
         >

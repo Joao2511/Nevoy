@@ -22,7 +22,7 @@ const item: Variants = {
 
 export default function Escolha() {
   return (
-    <div>
+    <div className="bg-black">
       <motion.section
         id="sobre"
         className="mx-auto w-full max-w-6xl px-6 py-20"
