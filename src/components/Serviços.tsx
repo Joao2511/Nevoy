@@ -60,7 +60,7 @@ export default function Servicos() {
     <>
       <div className="bg-black">
         <motion.h1
-          className="mt-82 text-center text-4xl leading-[1.05] font-semibold md:text-5xl"
+          className="mt-82 text-center text-3xl leading-[1.05] font-semibold md:text-4xl"
           initial={{ opacity: 0, y: 14, filter: 'blur(8px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, amount: 0.4 }}
@@ -72,7 +72,7 @@ export default function Servicos() {
 
         <motion.section
           id="servicos"
-          className="mx-auto mb-12 grid max-w-6xl [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))] place-items-center gap-x-24 gap-y-6 px-4 py-10 text-white"
+          className="mx-auto mb-12 grid max-w-6xl [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))] place-items-center gap-x-6 gap-y-6 px-4 py-10 text-white"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
@@ -82,31 +82,31 @@ export default function Servicos() {
             <motion.div
               key={service.title}
               variants={card}
-              className="group relative h-full w-[340px] transition-transform duration-500 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.03]"
+              className="group relative h-full w-full max-w-[300px] md:max-w-[340px] transition-transform duration-500 ease-out will-change-transform hover:-translate-y-1 hover:scale-[1.03]"
             >
               <div className="h-full rounded-3xl bg-transparent p-[2px] transition-all duration-300 group-hover:bg-[#a855f7]/30">
-                <div className="relative z-10 flex h-full flex-col rounded-3xl border-none bg-gradient-to-tr from-[#0c0c0c] via-[#050505] to-[#141414] p-8 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]">
+                <div className="relative z-10 flex h-full flex-col rounded-3xl border-none bg-gradient-to-tr from-[#0c0c0c] via-[#050505] to-[#141414] p-6 md:p-8 shadow-lg backdrop-blur-md transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.25)]">
                   <div className="flex-1">
-                    <div className="mb-6 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/40 transition-all duration-300 ease-out group-hover:border-[#a855f7] group-hover:shadow-[0_0_0_4px_rgba(168,85,247,0.15)]">
+                    <div className="mb-4 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/40 transition-all duration-300 ease-out group-hover:border-[#a855f7] group-hover:shadow-[0_0_0_4px_rgba(168,85,247,0.15)]">
                       <div className="h-3 w-3 rounded-full bg-white/70 transition-all duration-300 ease-out group-hover:bg-[#a855f7]" />
                     </div>
 
-                    <h3 className="mb-2 text-2xl font-medium">{service.title}</h3>
+                    <h3 className="mb-2 text-xl md:text-2xl font-medium">{service.title}</h3>
 
-                    <p className="mb-6 line-clamp-2 font-extralight text-white/70">
+                    <p className="mb-4 line-clamp-2 font-extralight text-white/70 text-sm md:text-base">
                       {service.text}
                     </p>
 
-                    <hr className="mb-6 border-white/10" />
+                    <hr className="mb-4 border-white/10" />
 
-                    <h4 className="mb-4 font-medium text-white/90">O que você recebe</h4>
+                    <h4 className="mb-3 font-medium text-white/90 text-sm md:text-base">O que você recebe</h4>
 
-                    <motion.ul className="space-y-3" variants={list}>
+                    <motion.ul className="space-y-2" variants={list}>
                       {service.itens.map((item, idx) => (
                         <motion.li
                           key={`${service.title}-${idx}`}
                           variants={listItem}
-                          className="flex items-center gap-2 text-gray-300"
+                          className="flex items-center gap-2 text-gray-300 text-sm"
                         >
                           <FontAwesomeIcon
                             icon={faCircleCheck}
@@ -123,9 +123,9 @@ export default function Servicos() {
                     target="_blank"
                     rel="noopener noreferrer"
                     whileTap={{ scale: 0.98 }}
-                    className="mt-8 flex h-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-t from-[#0a0a0a] to-[#1b1b1b] text-white transition-all duration-300"
+                    className="mt-6 flex h-10 md:h-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-t from-[#0a0a0a] to-[#1b1b1b] text-white transition-all duration-300"
                   >
-                    <span className="transition-colors duration-300 group-hover:text-[#a855f7]">
+                    <span className="text-sm md:text-base transition-colors duration-300 group-hover:text-[#a855f7]">
                       Solicitar orçamento
                     </span>
                   </motion.a>

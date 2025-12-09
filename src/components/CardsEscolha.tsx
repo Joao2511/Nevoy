@@ -56,7 +56,7 @@ function Card({ icon, title, desc }: Card) {
 
   return (
     <div
-      className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-tl from-[#0C0C0C] to-[#171717] p-6 md:px-8 md:py-12 transition-all duration-300 "
+      className="relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-tl from-[#0C0C0C] to-[#171717] p-5 md:p-6 transition-all duration-300"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -81,17 +81,17 @@ function Card({ icon, title, desc }: Card) {
       )}
 
       <div className="relative z-[2]">
-        <div className="flex items-center justify-center w-16 h-16 rounded-lg border border-white/10 bg-[#262626] transition-all duration-300 group-hover:border-white/20">
+        <div className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-lg border border-white/10 bg-[#262626] transition-all duration-300 group-hover:border-white/20">
           <FontAwesomeIcon
             icon={icon}
-            className="text-white text-2xl transition-transform duration-300 group-hover:scale-110"
+            className="text-white text-xl md:text-2xl transition-transform duration-300 group-hover:scale-110"
           />
         </div>
 
-        <h3 className="mt-5 text-xl md:text-xl font-semibold text-white">
+        <h3 className="mt-4 text-lg md:text-xl font-semibold text-white">
           {title}
         </h3>
-        <p className="mt-2 text-sm text-neutral-400 leading-relaxed">{desc}</p>
+        <p className="mt-2 text-xs md:text-sm text-neutral-400 leading-relaxed">{desc}</p>
       </div>
 
     </div>

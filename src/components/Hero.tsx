@@ -5,9 +5,9 @@ import SplineViewer from '@/components/SplineViewer';
 
 export default function Hero() {
   return (
-    <main id="hero" className="ointer-events: none overflow-x-hidden text-white">
+    <main id="hero" className="pointer-events-none overflow-x-hidden text-white">
       <motion.section
-        className="ointer-events: none relative mt-24 flex h-[100svh] w-full flex-col items-center justify-center text-center"
+        className="pointer-events-none relative mt-24 flex h-[70svh] md:h-[100svh] w-full flex-col items-center justify-center text-center"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.4 }}

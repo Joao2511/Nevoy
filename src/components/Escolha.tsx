@@ -34,7 +34,7 @@ export default function Escolha() {
         <motion.header className="mx-auto mb-24 max-w-3xl text-center" variants={container}>
           <motion.h2
             variants={item}
-            className="mb-6 text-4xl md:text-5xl"
+            className="mb-6 text-3xl md:text-4xl"
             style={{ willChange: 'transform, filter, opacity' }}
           >
             Por que escolher a{' '}
@@ -43,7 +43,7 @@ export default function Escolha() {
             </span>
           </motion.h2>
 
-          <motion.p variants={item} className="text-lg leading-relaxed text-neutral-400 md:text-xl">
+          <motion.p variants={item} className="text-base leading-relaxed text-neutral-400 md:text-lg">
             Somos especialistas em transformar complexidade em simplicidade. A Nevoy entrega
             soluções digitais que unem software, automação e IA para gerar crescimento e resultados
             mensuráveis.
@@ -56,7 +56,7 @@ export default function Escolha() {
       </motion.section>
 
       <motion.h1
-        className="mt-64 mb-16 pl-36 text-5xl leading-[1.05] font-semibold md:text-6xl"
+        className="mt-64 mb-16 pl-6 text-4xl leading-[1.05] font-semibold md:pl-36 md:text-5xl"
         initial={{ opacity: 0, y: 22, filter: 'blur(10px)' }}
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true, amount: 0.3 }}
